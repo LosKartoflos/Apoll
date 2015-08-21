@@ -1,0 +1,247 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+
+
+ /*Background:
+ Foreground:
+ Border:*/
+
+/*
+* Content
+* 1. Colors
+*   1.1. ColorTable
+*   1.2. Specific Colors
+* 2. Styles
+* 3. Help Classes
+*/
+
+
+/*-------------------------------------*
+    1. Colors
+*-------------------------------------*/
+
+/*-------------------------------------*
+    1.1. ColorTable
+*-------------------------------------*/
+
+/*
+
+Teal - Google Color Pattern  https://www.google.com/design/spec/style/color.html#color-color-palette
+
+500 #009688
+
+50  #E0F2F1
+100  #B2DFDB
+200  #80CBC4
+300  #4DB6AC
+400  #26A69A
+500  #009688
+600  #00897B
+700  #00796B
+800  #00695C
+900  #004D40
+A100 #A7FFEB
+A200 #64FFDA
+A400 #1DE9B6
+A700 #00BFA5
+
+*/
+
+/*-------------------------------------*
+    1.2. Specific Colors
+*-------------------------------------*/
+
+
+
+
+
+/*
+
+    Normal Background:
+    Normal Foreground:
+    Normal Border:
+
+    Pressed Background:
+    Pressed Foreground:
+    Pressed Border:
+
+    Highlighted Background:
+    Highlighted Foreground:
+    Highlighted Border:
+
+    Disabled Background:
+    Disabled Foreground:
+    Disabled Border:
+
+Background:
+    Background: #009688
+
+a:
+    Normal Background:#00897B
+    Normal Foreground:#ffffff
+    Normal Border:#00897B
+
+    Pressed Background:#00796B
+    Pressed Foreground:#80CBC4
+    Pressed Border:#00897B
+
+    Highlighted Background:
+    Highlighted Foreground:
+    Highlighted Border:
+
+    Disabled Background:
+    Disabled Foreground:
+    Disabled Border:
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+/*-------------------------------------*
+    2. Styles
+*-------------------------------------*/
+
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+     background-color: #26A69A;  
+}
+
+/*-----------------------
+| a
+*-----------------------*/
+a{
+    background-color:#00897B;
+    border-radius:8px;
+    border:1px solid #00897B;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Roboto;
+    font-weight: normal;
+    font-size:17px;
+    padding:8px 12px;
+    text-decoration:none;
+}
+
+a:active{
+    background-color:#00796B;
+    border-radius:8px;
+    border:1px solid #00897B;
+    display:inline-block;
+    color:#80CBC4;
+    font-family:Roboto;
+    font-weight: normal;
+    font-size:17px;
+    padding:8px 12px;
+    text-decoration:none;
+}
+
+a.big{
+    margin: 3px 3px 17px 3px;
+    width: 65%;
+}
+
+/*-----------------------
+| button
+*-----------------------*/
+
+button{
+	background-color:#00897B;
+	border-radius:8px;
+	border:1px solid #00897B;
+	display:inline-block;
+	color:#ffffff;
+	//font-family:Roboto;
+        font-weight: normal;
+	font-size:17px;
+	padding:8px 12px;
+	text-decoration:none;
+
+}
+
+button.big{
+    margin: 3px 3px 17px 3px;
+    width: 65%;
+}
+
+
+/*-----------------------
+| div
+*-----------------------*/
+
+#center{
+    text-align: center;
+    width: 80%;
+    margin: 15px;
+    
+}
+
+#container{
+    height: 5%;
+    text-align:center;
+}
+
+#bottom{
+    height: 15%;
+    text-align:center;
+}
+
+#header{
+    height: 20%;
+    text-align:center;
+    padding: 5px
+}
+
+#main{
+    text-align:center;
+    
+}
+
+/*-------------------------------------*
+    2. Help Classes
+*-------------------------------------*/
+
+
+
+
+
+
+.width100 { width: 100%; }
+.width75 { width: 75%; }
+.width50 { width: 50%; }
+.floatLeft { float: left; }
+.floatRight { float: right; }
+.alignLeft { text-align: left; }
+.alignRight { text-align: right; }
+
+
