@@ -125,6 +125,20 @@ a:
 */
 
 
+@font-face {
+    font-family: "customfont";
+    src: url("../Resources/Fonts/Roboto-Light.ttf") format("opentype");   
+        /* Make sure you defined the correct path, which is related to
+            the location of your file `my_css.css` */ 
+    }
+    
+    @font-face {
+    font-family: "customfont2";
+    src: url("../Resources/Fonts/Roboto-Regular.ttf") format("opentype");   
+        /* Make sure you defined the correct path, which is related to
+            the location of your file `my_css.css` */ 
+    }
+
 /*-------------------------------------*
     2. Styles
 *-------------------------------------*/
@@ -135,6 +149,9 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
      background-color: #26A69A;  
+     
+     font-family: "customfont2";
+     font-size: 16pt;
 }
 
 /*-----------------------
@@ -146,7 +163,7 @@ a{
     border:1px solid #00897B;
     display:inline-block;
     color:#ffffff;
-    font-family:Roboto;
+    font-family: "customfont2";
     font-weight: normal;
     font-size:17px;
     padding:8px 12px;
@@ -212,13 +229,20 @@ button.big{
 }
 
 #bottom{
-    height: 15%;
+    /*height: 15%;
     text-align:center;
+    margin-bottom: -100%;*/
+    
+    clear:left;
+    margin-top:1em;
+    background:#efefef;
+    text-align:center;
+    padding:10px;
 }
 
 #header{
     height: 20%;
-    text-align:center;
+    text-align:left;
     padding: 5px
 }
 
@@ -227,12 +251,81 @@ button.big{
     
 }
 
+/*-----------------------
+| h
+*-----------------------*/
+
+h1{
+    color: #ffffff;
+    font-family: "customfont2";
+    font-weight: normal;
+    margin-left: 5%;
+    
+    
+}
+
+/*-----------------------
+| input
+*-----------------------*/
+input{
+    background: transparent;
+    border-color: #00897B;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-left-width: 2px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    color: white;
+    font-size: 16pt;
+    margin: 3px;
+
+}
+
+input:focus{
+    background: transparent;
+    border-color: #26A69A;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-left-width: 2px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    color: white;
+    font-size: 16pt; 
+
+}
+
+input.big{
+        width: 75%
+    
+}
+
+/*-----------------------
+| textarea
+*-----------------------*/
+
+textarea{
+    background: #00897B;
+    border-color: #00897B;
+    border-width: 0px;
+    color: white;
+    font-family: "customfont2";
+    font-size: 16pt; 
+    height: 96pt;   
+    margin: 3px;
+}
+
 /*-------------------------------------*
     2. Help Classes
 *-------------------------------------*/
 
+/*@font-face{
+    font-family: aFont;
+    src: url("../Resources/Fonts/Roboto-Regular.ttf");
+}*/
 
-
+/*.myFontClass{
+    font-family: aFont;
+}*/
 
 
 
