@@ -6,40 +6,92 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Schedule Settings</title>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        
-        
-        <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+
+
+        <link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>   
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="../../../js/index.js"></script>
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
-        
-        
-        <div id="container">
-            <div id="header">
-                <h1>Termin Finden</h1>
-            </div>
 
-            <div id="main">
-                <input value="Worum geht es?" class="big" onfocus="if(this.value == 'Worum geht es?') {this.value=''}" onblur="if(this.value == ''){this.value ='Worum geht es?'}"/>
-                <textarea placeholder="Genauere Beschreibung..."   class="big"></textarea>
-                <!--onfocus="if(this.value == 'Genauere Beschreibung...') {this.value=''}" onblur="if(this.value == ''){this.value ='Genauere Beschreibung...'}"-->
-                <script type="text/javascript">
-                  
-                </script>
-            </div>  
 
-            <div id="footer">
+        <div id="header">
+            <p>Terminplanung:</p>
+        </div>
+        <div class="colmask threecol">
+            <div class="colmid">
+                <div class="colleft">
 
+                    <div class="col1">
+                        <!-- Column 1 start -->
+
+
+                        <div id="center">
+                            <input value="Worum geht es?" class="big" 
+                                   onfocus="if (this.value == 'Worum geht es?') {
+                                               this.value = '';
+                                           }" 
+                                   onblur="if (this.value == '') {
+                                               this.value = 'Worum geht es?';
+                                           }"/>
+
+                        </div>
+                        <div id="center">
+                            <textarea placeholder="Genauere Beschreibung..."   class="big"></textarea> 
+                        </div>
+
+                        <h2>Auswahl Möglichkeiten:</h2>
+                        <label for="check1" style="display: block; left: 0px; text-align: left;">
+                            <input type="checkbox" name="possibility" value="Vielleicht" id="check2">
+                            Nein
+                        </label> 
+                        <label for="check2" style="display: block; left: 0px; text-align: left; ">
+                            <input type="checkbox" name="possibility" value="Vielleicht" id="check2">
+                            Vielleicht
+                        </label> 
+                        <label for="check3" style="display: block; left: 0px; text-align: left;">
+                            <input type="checkbox" name="possibility" value="Favorit" id="check3">
+                            Favorit
+                        </label>
+
+                        <div id="center">
+                            <h2>Editierbar:</h2>
+
+                            <fieldset>
+                                <input type="radio"id="me" name="Editable" value="Von Mir"  checked ><label for="mc" >Von Mir</label><br> 
+                                <input type="radio" id="add" name="Editable" value="Nutzer können hinzufügen"><label for="vi">Nutzer können hinzufügen</label><br> 
+                                <input type="radio" id="all" name="Editable" value="Nützer können hinzufügen & entfernen"><label for="ae">Nutzer können hinzufügen & entfernen</label> 
+                            </fieldset>
+
+                        </div>
+
+                        <!-- Column 1 end -->
+                    </div>
+                    <div class="col2">
+                        <!-- Column 2 start -->
+
+                        <!-- Column 2 end -->
+                    </div>
+                    <div class="col3">
+                        <!-- Column 3 start -->
+
+
+                        <!-- Column 3 end -->
+                    </div>
+                </div>
             </div>
         </div>
-        
+        <div id="footer">
+            <a class="big" href="Schedule_SetDate.html" >Weiter</a>
+            <a class="big" href="../NewPoll_Selection.html" >Zur&uuml;ck</a>
+        </div>
+
     </body>
 </html>

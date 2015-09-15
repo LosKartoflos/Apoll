@@ -6,40 +6,214 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>SetDate</title>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        
-        
+
+
         <link rel="stylesheet" type="text/css" href="../../../css/style.css">
     </head>
     <body>   
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="../../../js/index.js"></script>
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
-        
-        
-        <div id="container">
-            <div id="header">
-               
-            </div>
+        <script type="text/javascript" src="../../../js/jquery.mobile-1.4.5.min.js"></script>
 
-            <div id="main">
-                
-                
 
-                <script type="text/javascript">
-                  
-                </script>
-            </div>  
+        <div id="header">
+            <p>Zeiten</p>
+        </div>
+        <div class="colmask threecol">
+            <div class="colmid">
+                <div class="colleft">
+                    <div class="col1">
+                        <!-- Column 1 start -->
+                        <div id="center" class="container">
+                            <div class="divRollOut" id="unrolled">
+                                <a class="bigInside" onclick="dateElementClicked(this)">Neuen Termin Hinzufügen</a>
+                            </div>
+                        </div>
 
-            <div id="footer">
 
+
+                        <!-- Column 1 end -->
+                    </div>
+                    <div class="col2">
+                        <!-- Column 2 start -->
+
+                        <!-- Column 2 end -->
+                    </div>
+                    <div class="col3">
+                        <!-- Column 3 start -->
+
+                        <!-- Column 3 end -->
+                    </div>
+                </div>
             </div>
         </div>
-        
+        <div id="footer">
+
+
+        </div>
+
+        <script>
+            //$.mobile.loadingMessage = false;
+            //$.mobile.hidePageLoadingMsg();
+
+            //jQuery(document).on("mobileinit", function () {
+            //    jQuery.mobile.autoInitializePage = false;
+            //});
+            // the first dateElement
+            //$(document).on("mobileinit", newDateElement());
+            newDateElement();
+            var numberOfAppointments = 0;
+            var apointment = {
+                id: 0,
+                date: 0,
+                rolled: false
+            };
+            var appointmentList = new Array();
+
+            /*("a").click(function () {
+             alert("a clicked");
+             dateElementClicked(this);
+             
+             });*/
+            /*Controls what happens if a dateElement is clicked:
+             * 
+             * if its the first time it will change to a normal dateElement
+             * else it will be pop out an will be editable or shrink
+             */
+
+            function dateElementClicked(clickedAnchor) {
+                if ($(clickedAnchor).parent().attr("id") == "unrolled")
+                {
+                    dateElementClickedFirstTime(clickedAnchor);
+                    newDateElement();
+                }
+                else if (appointmentList[getDateElementNumber(clickedAnchor)]["RolledOut"] == true)
+                {
+                    hideInput(getDateElementNumber(clickedAnchor));
+
+                }
+                else if (appointmentList[getDateElementNumber(clickedAnchor)]["RolledOut"] == false)
+                {
+                    showInput(getDateElementNumber(clickedAnchor));
+                }
+                else
+                {
+                    alert("Element not listed");
+                }
+
+            }
+
+            //gets the Number of the Dateelement of a clicked Anchor
+            function getDateElementNumber(clickedAnchor) {
+                return(($(clickedAnchor).parent().attr("id")).slice(-1));
+            }
+
+            // if a is clicked the first Time
+            function dateElementClickedFirstTime(clickedAnchor) {
+                //adding the html stuff
+                var div = $(clickedAnchor).parent(".divRollOut");
+                div.attr("id", "dateElement" + numberOfAppointments);
+                div.append("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
+                div.append("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
+                div.css("background-color", "#009688");
+
+                //adding to apoinment list
+                appointmentList[numberOfAppointments] = new Object();
+                appointmentList[numberOfAppointments]["Id"] = numberOfAppointments;
+                appointmentList[numberOfAppointments]["Date"] = new Date();
+                appointmentList[numberOfAppointments]["RolledOut"] = true;
+
+                //decide which Time and Date will be preconfigured
+                var dateTime = appointmentList[numberOfAppointments]["Date"];
+
+                if (numberOfAppointments == 0) {
+                    setCurrentTime(numberOfAppointments, dateTime);
+                }
+
+                else if (numberOfAppointments == 0) {
+                    dateTime.setHours(dateTime.getHours() + numberOfAppointments);
+                    setCurrentTime(numberOfAppointments, dateTime);
+                }
+
+
+                //countig up the ID counter (must come at last)
+                numberOfAppointments += 1;
+            }
+
+            //Time Validation
+
+            //gets The entered Date Values of Specific box
+            function getTimeOfdateElement(numberOfAppointments) {
+                var dateTime = new Date(
+                        $("#dateElement" + numberOfAppointments + " #year").val(),
+                        $("#dateElement" + numberOfAppointments + " #month").val(),
+                        $("#dateElement" + numberOfAppointments + " #day").val(),
+                        $("#dateElement" + numberOfAppointments + " #hour").val(),
+                        $("#dateElement" + numberOfAppointments + " #min").val()
+                        );
+                return (dateTime);
+            }
+
+            //apply the the Time from Textboxes to Current Item
+            function applyTime(numberOfAppointments, dateTime) {
+
+            }
+
+            //fills the Textboxes with current time for the first use or with the next logical
+            function setCurrentTime(numberOfAppointments, dateTime) {
+                $("#dateElement" + numberOfAppointments + " #day").val(dateTime.getDate());
+                $("#dateElement" + numberOfAppointments + " #month").val(dateTime.getMonth());
+                $("#dateElement" + numberOfAppointments + " #year").val(dateTime.getFullYear());
+                $("#dateElement" + numberOfAppointments + " #hour").val(dateTime.getHours());
+                $("#dateElement" + numberOfAppointments + " #min").val(dateTime.getMinutes());
+            }
+
+
+            //Show and Hide
+
+            //Hides in inputs and p of certain date Element
+            function hideInput(numberOfAppointments) {
+                $("#dateElement" + numberOfAppointments + " #day").hide();
+                $("#dateElement" + numberOfAppointments + " #month").hide();
+                $("#dateElement" + numberOfAppointments + " #year").hide();
+                $("#dateElement" + numberOfAppointments + " #hour").hide();
+                $("#dateElement" + numberOfAppointments + " #min").hide();
+                $("#dateElement" + numberOfAppointments + " #labelDate").hide();
+                $("#dateElement" + numberOfAppointments + " #labelTime").hide();
+
+                appointmentList[numberOfAppointments]["RolledOut"] = false;
+            }
+            //Shows in inputs and p of certain date Element
+            function showInput(numberOfAppointments) {
+                $("#dateElement" + numberOfAppointments + " #day").show();
+                $("#dateElement" + numberOfAppointments + " #month").show();
+                $("#dateElement" + numberOfAppointments + " #year").show();
+                $("#dateElement" + numberOfAppointments + " #hour").show();
+                $("#dateElement" + numberOfAppointments + " #min").show();
+                $("#dateElement" + numberOfAppointments + " #labelDate").show();
+                $("#dateElement" + numberOfAppointments + " #labelTime").show();
+
+                appointmentList[numberOfAppointments]["RolledOut"] = true;
+            }
+
+
+
+
+            /*adds a new Date Element to the Container div*/
+            function newDateElement() {
+                alert("newDateElement");
+                //$(".container").append("<div class='divRollOut' id='unrolled'><a class='bigInside' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
+                // $(".container").trigger('create');
+
+            }
+        </script>
+
     </body>
 </html>
