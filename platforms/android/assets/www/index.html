@@ -34,10 +34,11 @@
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, width=device-width">
 
-
+        <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
         <title>Apoll</title>
         <!--style>
@@ -52,6 +53,7 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
 
         <!--div id="container">
             <div id="header" style="text-align: center">
@@ -77,9 +79,9 @@
 
         </div-->
 
-        
-        
-        <div id="header">
+
+
+        <!--div id="header">
             <div id="center">
                 <image src="img/Logo_Transparent.png" alt="Logo" style="margin: 15px 3px 30px 3px; width: 40%;" >
             </div>
@@ -88,34 +90,51 @@
         <div class="colmask threecol">
             <div class="colmid">
                 <div class="colleft">
-                    <div class="col1">
-                        <!-- Column 1 start -->
-                        <div id="center">
-                            
-                            <a class="big" id="button_newPoll" href="Sites/NewPoll/NewPoll_Selection.html">Neue Umfrage</a>
-                            <a class="big" id="button_myPoll">Meine Umfragen</a>
-                            <a class="big" id="button_otherPoll">Andere Umfragen</a>
-                            <a class="big" id="button_friends">Freunde</a>
-                        </div>
+                    <div class="col1"-->
+        <!-- Column 1 start -->
+        <!--div id="center">
+            
+            <a class="big" id="button_newPoll" href="Sites/NewPoll/NewPoll_Selection.html">Neue Umfrage</a>
+            <a class="big" id="button_myPoll">Meine Umfragen</a>
+            <a class="big" id="button_otherPoll">Andere Umfragen</a>
+            <a class="big" id="button_friends">Freunde</a>
+        </div>
 
-                        <!-- Column 1 end -->
-                    </div>
-                    <div class="col2">
-                        <!-- Column 2 start -->
+        <!-- Column 1 end -->
+        <!--/div>
+        <div class="col2">
+        <!-- Column 2 start -->
 
-                        <!-- Column 2 end -->
-                    </div>
-                    <div class="col3">
-                        <!-- Column 3 start -->
+        <!-- Column 2 end -->
+        <!--/div>
+        <div class="col3">
+        <!-- Column 3 start -->
 
-                        <!-- Column 3 end -->
-                    </div>
-                </div>
+        <!-- Column 3 end -->
+        <!--/div>
+    </div>
+</div>
+</div>
+<div id="footer">
+<p>foot<p>
+</div-->
+        <div data-role="page">
+            <div data-role="header">               
+                <!--image src="img/Logo_Transparent.png" alt="Logo" style="margin: 15px 3px 30px 3px; width: 40%;" -->
+                <h1>Apoll</h1>
             </div>
-        </div>
-        <div id="footer">
-            <p>foot<p>
-        </div>
+
+            <div data-role="main" class="ui-content">
+                <a data-role="button"  data-transition="slide" id="button_newPoll" href="Sites/NewPoll/NewPoll_Selection.html" >Neue Umfrage</a>
+                <a data-role="button" id="button_myPoll">Meine Umfragen</a>
+                <a data-role="button" id="button_otherPoll">Andere Umfragen</a>
+                <a data-role="button" id="button_friends">Freunde</a>
+            </div>
+
+            <div data-role="footer"  data-position="fixed">
+                <a data-role="button" data-icon="ui-icon-bars"></a>
+            </div>
+        </div> 
 
     </body>
 </html>

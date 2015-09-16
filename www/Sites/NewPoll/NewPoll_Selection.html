@@ -13,47 +13,33 @@ and open the template in the editor.
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-
+        <link href="../../css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+       
+
     </head>
     <body>   
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="../../js/index.js"></script>
         <script type="text/javascript" src="../../js/jquery.min.js"></script>
+        <script src="../../js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
 
 
-        <div id="header">
-            <p>Auswahlmöglichkeiten:</p>
-        </div>
-        <div class="colmask threecol">
-            <div class="colmid">
-                <div class="colleft">
-                    <div class="col1">
-                        <!-- Column 1 start -->
-                        <div id="center">
-                            <a id="BT_1" class="big" href="Schedule/Schedule_settings.html">Termin</a>
-                            <a class="big">Entscheidung</a>
-                            <a class="big">Umfrage</a>  
-                        </div>
-
-                        <!-- Column 1 end -->
-                    </div>
-                    <div class="col2">
-                        <!-- Column 2 start -->
-
-                        <!-- Column 2 end -->
-                    </div>
-                    <div class="col3">
-                        <!-- Column 3 start -->
-
-                        <!-- Column 3 end -->
-                    </div>
-                </div>
+        <div data-role="page">
+            <div data-role="header">               
+                <h1>Auswahlmöglichkeiten</h1>
             </div>
-        </div>
-        <div id="footer">
-            <a class="big" href="../../index.html" >Zur&uuml;ck</a>
 
-        </div>
+            <div data-role="main" class="ui-content">
+                <a data-role="button"  data-transition="slide" href="Schedule/Schedule_settings.html">Termin</a>
+                <a data-role="button"  data-transition="slide">Entscheidung</a>
+                <a data-role="button"  data-transition="slide" >Umfrage</a>  
+            </div>
+
+            <div data-role="footer"  data-position="fixed">
+                <a class="ui-btn" href="../../index.html"  data-transition="slide" data-direction="reverse">Zur&uuml;ck</a>
+            </div>
+        </div> 
     </body>
 </html>

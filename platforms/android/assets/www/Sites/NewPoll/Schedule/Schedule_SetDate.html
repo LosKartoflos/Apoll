@@ -13,51 +13,32 @@ and open the template in the editor.
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-
+        <link href="../../../css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+
+
     </head>
     <body>   
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="../../../js/index.js"></script>
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
         <script type="text/javascript" src="../../../js/jquery.mobile-1.4.5.min.js"></script>
+        
 
-
-        <div id="header">
-            <p>Zeiten</p>
-        </div>
-        <div class="colmask threecol">
-            <div class="colmid">
-                <div class="colleft">
-                    <div class="col1">
-                        <!-- Column 1 start -->
-                        <div id="center" class="container">
-                            <div class="divRollOut" id="unrolled">
-                                <a class="bigInside" onclick="dateElementClicked(this)">Neuen Termin Hinzufügen</a>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Column 1 end -->
-                    </div>
-                    <div class="col2">
-                        <!-- Column 2 start -->
-
-                        <!-- Column 2 end -->
-                    </div>
-                    <div class="col3">
-                        <!-- Column 3 start -->
-
-                        <!-- Column 3 end -->
-                    </div>
-                </div>
+        <div data-role="page">
+            <div data-role="header">               
+                <h1>Zeiten</h1>
             </div>
-        </div>
-        <div id="footer">
 
+            <div data-role="main" class="ui-content">
+                
+            </div>
 
-        </div>
+            <div data-role="footer"  data-position="fixed">
+                <a  href="Schedule_settings.html" data-transition="slide" data-direction="reverse" >Zur&uuml;ck</a>
+                <a  href="Schedule_End.html" data-transition="slide" style="float: right" >Weiter</a>
+            </div>
+        </div> 
 
         <script>
             //$.mobile.loadingMessage = false;
@@ -67,8 +48,8 @@ and open the template in the editor.
             //    jQuery.mobile.autoInitializePage = false;
             //});
             // the first dateElement
-            //$(document).on("mobileinit", newDateElement());
-            newDateElement();
+            $(document).on("mobileinit", newDateElement());
+            //newDateElement();
             var numberOfAppointments = 0;
             var apointment = {
                 id: 0,
@@ -120,8 +101,8 @@ and open the template in the editor.
                 //adding the html stuff
                 var div = $(clickedAnchor).parent(".divRollOut");
                 div.attr("id", "dateElement" + numberOfAppointments);
-                div.append("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
-                div.append("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
+                div.appendTo("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
+                div.appendTo("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
                 div.css("background-color", "#009688");
 
                 //adding to apoinment list
@@ -209,7 +190,7 @@ and open the template in the editor.
             /*adds a new Date Element to the Container div*/
             function newDateElement() {
                 alert("newDateElement");
-                //$(".container").append("<div class='divRollOut' id='unrolled'><a class='bigInside' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
+                $(".ui-content").append("<div class='divRollOut' id='unrolled'><a class='bigInside' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
                 // $(".container").trigger('create');
 
             }

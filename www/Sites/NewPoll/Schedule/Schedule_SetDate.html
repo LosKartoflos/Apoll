@@ -13,9 +13,9 @@ and open the template in the editor.
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-
+        <link href="../../../css/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="../../../css/style.css">
-        <link href="../../../js/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+
 
     </head>
     <body>   
@@ -23,43 +23,25 @@ and open the template in the editor.
         <script type="text/javascript" src="../../../js/index.js"></script>
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
         <script type="text/javascript" src="../../../js/jquery.mobile-1.4.5.min.js"></script>
-        
-
-        <div id="header">
-            <p>Zeiten</p>
-        </div>
-        <div class="colmask threecol">
-            <div class="colmid">
-                <div class="colleft">
-                    <div class="col1">
-                        <!-- Column 1 start -->
-                        <div id="center" class="container">
-                            <div class="divRollOut" id="unrolled">
-                                <a class="bigInside" onclick="dateElementClicked(this)">Neuen Termin Hinzufügen</a>
-                            </div>
-                        </div>
 
 
-
-                        <!-- Column 1 end -->
-                    </div>
-                    <div class="col2">
-                        <!-- Column 2 start -->
-
-                        <!-- Column 2 end -->
-                    </div>
-                    <div class="col3">
-                        <!-- Column 3 start -->
-
-                        <!-- Column 3 end -->
-                    </div>
-                </div>
+        <div data-role="page">
+            <div data-role="header">               
+                <h1>Zeiten</h1>
             </div>
-        </div>
-        <div id="footer">
 
+            <div data-role="main" class="ui-content">
+                <div class="divRollOut" id="unrolled">
+                    <a data-role="button" onclick="dateElementClicked(this)">Neuen Termin Hinzufügen</a>
+                </div>
 
-        </div>
+            </div>
+
+            <div data-role="footer"  data-position="fixed">
+                <a  href="Schedule_settings.html" data-transition="slide" data-direction="reverse" >Zur&uuml;ck</a>
+                <a  href="Schedule_End.html" data-transition="slide" style="float: right" >Weiter</a>
+            </div>
+        </div> 
 
         <script>
             //$.mobile.loadingMessage = false;
@@ -70,7 +52,8 @@ and open the template in the editor.
             //});
             // the first dateElement
             //$(document).on("mobileinit", newDateElement());
-            newDateElement();
+            //$(".ui-content").live(newDateElement());
+            //newDateElement();
             var numberOfAppointments = 0;
             var apointment = {
                 id: 0,
@@ -79,11 +62,11 @@ and open the template in the editor.
             };
             var appointmentList = new Array();
 
-            /*("a").click(function () {
-             alert("a clicked");
-             dateElementClicked(this);
-             
-             });*/
+            /*$("a").click(function () {
+                alert("a clicked");
+                dateElementClicked(this);
+
+            });*/
             /*Controls what happens if a dateElement is clicked:
              * 
              * if its the first time it will change to a normal dateElement
@@ -91,7 +74,8 @@ and open the template in the editor.
              */
 
             function dateElementClicked(clickedAnchor) {
-                if ($(clickedAnchor).parent().attr("id") == "unrolled")
+                newDateElement();
+               /* if ($(clickedAnchor).parent().attr("id") == "unrolled")
                 {
                     dateElementClickedFirstTime(clickedAnchor);
                     newDateElement();
@@ -108,13 +92,16 @@ and open the template in the editor.
                 else
                 {
                     alert("Element not listed");
-                }
+                }*/
 
             }
 
             //gets the Number of the Dateelement of a clicked Anchor
             function getDateElementNumber(clickedAnchor) {
+                alert($(clickedAnchor).attr("id"));
+                alert(($(clickedAnchor).parent().attr("id")));
                 return(($(clickedAnchor).parent().attr("id")).slice(-1));
+
             }
 
             // if a is clicked the first Time
@@ -210,9 +197,14 @@ and open the template in the editor.
 
             /*adds a new Date Element to the Container div*/
             function newDateElement() {
+
+                //$(".ui-content").append("<div class='divRollOut' id='unrolled'><a data-role='button' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
+                // $(".ui-content").trigger('create');
+
+                var newDateElement = $(document.createElement('div')).attr("class", 'divRollOut');
+                newDateElement.after().html("<a data-role='button' onclick='dateElementClicked(this)' class='ui-link ui-btn ui-shadow ui-corner-all' role='button'>Neuen Termin Hinzufügen</a>");
+                newDateElement.appendTo(".ui-content");
                 alert("newDateElement");
-                //$(".container").append("<div class='divRollOut' id='unrolled'><a class='bigInside' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
-                // $(".container").trigger('create');
 
             }
         </script>
