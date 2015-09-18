@@ -28,90 +28,97 @@ and open the template in the editor.
         <div data-role="page">
             <div data-role="header">               
                 <h1>Zeiten</h1>
+
             </div>
 
-            <div data-role="main" class="ui-content">
-                <div class="divRollOut" id="unrolled">
-                    <a data-role="button" onclick="dateElementClicked(this)">Neuen Termin Hinzufügen</a>
+
+            <div data-role="main" class="ui-content" id="container" >
+                <div id="container0">
+                    <a data-role="button"  onclick="dateElementClicked(this)" id="anchor0">Neuen Termin Hinzufügen</a>
                 </div>
 
             </div>
 
-            <div data-role="footer"  data-position="fixed">
+            <div data-role="footer"  data-position="fixed" >
                 <a  href="Schedule_settings.html" data-transition="slide" data-direction="reverse" >Zur&uuml;ck</a>
                 <a  href="Schedule_End.html" data-transition="slide" style="float: right" >Weiter</a>
             </div>
-        </div> 
+        </div > 
 
         <script>
-            //$.mobile.loadingMessage = false;
-            //$.mobile.hidePageLoadingMsg();
 
-            //jQuery(document).on("mobileinit", function () {
-            //    jQuery.mobile.autoInitializePage = false;
-            //});
-            // the first dateElement
-            //$(document).on("mobileinit", newDateElement());
-            //$(".ui-content").live(newDateElement());
-            //newDateElement();
             var numberOfAppointments = 0;
-            var apointment = {
-                id: 0,
-                date: 0,
-                rolled: false
-            };
+            /*var apointment = {
+             id: 0,
+             date: 0,
+             rolled: false
+             };*/
             var appointmentList = new Array();
 
-            /*$("a").click(function () {
-                alert("a clicked");
-                dateElementClicked(this);
-
-            });*/
+            //$(document).ready(newDateElement());   
             /*Controls what happens if a dateElement is clicked:
              * 
              * if its the first time it will change to a normal dateElement
              * else it will be pop out an will be editable or shrink
              */
-
             function dateElementClicked(clickedAnchor) {
-                newDateElement();
-               /* if ($(clickedAnchor).parent().attr("id") == "unrolled")
-                {
+                //anchor is clicked the first time(the id number equals numberOfAppointments)
+                if (clickedAnchor.id.slice(-1) == numberOfAppointments) {
                     dateElementClickedFirstTime(clickedAnchor);
-                    newDateElement();
                 }
                 else if (appointmentList[getDateElementNumber(clickedAnchor)]["RolledOut"] == true)
                 {
-                    hideInput(getDateElementNumber(clickedAnchor));
-
+                    hideContent(getDateElementNumber(clickedAnchor));
                 }
                 else if (appointmentList[getDateElementNumber(clickedAnchor)]["RolledOut"] == false)
                 {
-                    showInput(getDateElementNumber(clickedAnchor));
+                    showContent(getDateElementNumber(clickedAnchor));
                 }
                 else
                 {
                     alert("Element not listed");
-                }*/
-
+                }
             }
 
             //gets the Number of the Dateelement of a clicked Anchor
             function getDateElementNumber(clickedAnchor) {
-                alert($(clickedAnchor).attr("id"));
-                alert(($(clickedAnchor).parent().attr("id")));
-                return(($(clickedAnchor).parent().attr("id")).slice(-1));
-
+                return(clickedAnchor.id.slice(-1));
             }
+
+            //Show and Hide
+
+            //Hides in inputs and p of certain date Element
+            function hideContent(elementNumber) {
+                document.getElementById("content" + elementNumber).style.visibility = "hidden";
+                document.getElementById("content" + elementNumber).style.height = "0px";
+                appointmentList[elementNumber]["RolledOut"] = false;
+            }
+            //Shows in inputs and p of certain date Element
+            function showContent(elementNumber) {
+                document.getElementById("content" + elementNumber).style.visibility = "visible";
+                document.getElementById("content" + elementNumber).style.height = "auto";
+                appointmentList[elementNumber]["RolledOut"] = true;
+            }
+
+
+
 
             // if a is clicked the first Time
             function dateElementClickedFirstTime(clickedAnchor) {
                 //adding the html stuff
-                var div = $(clickedAnchor).parent(".divRollOut");
-                div.attr("id", "dateElement" + numberOfAppointments);
-                div.appendTo("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
-                div.appendTo("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
-                div.css("background-color", "#009688");
+
+                //the container div which should get html stuff
+                var divContainer = clickedAnchor.parentElement;
+
+                /*div.attr("id", "dateElement" + numberOfAppointments);
+                 div.appendTo("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
+                 div.appendTo("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
+                 div.css("background-color", "#009688");*/
+                divContainer.style = "background-color:#009688; border-radius:16px; margin: 0px 2 px 0px 5px";
+                divContainer.innerHTML = divContainer.innerHTML + 
+                        "<div id='content"+ numberOfAppointments +"' style='padding: 3px 3px 3px 3px'><p id='labelDate' style='visibility:inherit'>Datum: <input class='.ui-input-text' id='day' value='' style='visibility:inherit'/><input id='month' value='MM' style='visibility:inherit'/><input id='year' value='YYYY' style='visibility:inherit'/></p><p id='labelTime' style='visibility:inherit'>Uhrzeit: <input id='hour' value='hour' style='visibility:inherit'/><input id='min' value='min' style='visibility:inherit'/></p></div>"
+
+
 
                 //adding to apoinment list
                 appointmentList[numberOfAppointments] = new Object();
@@ -121,92 +128,36 @@ and open the template in the editor.
 
                 //decide which Time and Date will be preconfigured
                 var dateTime = appointmentList[numberOfAppointments]["Date"];
-
-                if (numberOfAppointments == 0) {
-                    setCurrentTime(numberOfAppointments, dateTime);
-                }
-
-                else if (numberOfAppointments == 0) {
-                    dateTime.setHours(dateTime.getHours() + numberOfAppointments);
-                    setCurrentTime(numberOfAppointments, dateTime);
-                }
+                /*
+                 if (numberOfAppointments == 0) {
+                 setCurrentTime(numberOfAppointments, dateTime);
+                 }
+                 
+                 else if (numberOfAppointments == 0) {
+                 dateTime.setHours(dateTime.getHours() + numberOfAppointments);
+                 setCurrentTime(numberOfAppointments, dateTime);
+                 }
+                 */
 
 
                 //countig up the ID counter (must come at last)
                 numberOfAppointments += 1;
+                newDateElement();
             }
-
-            //Time Validation
-
-            //gets The entered Date Values of Specific box
-            function getTimeOfdateElement(numberOfAppointments) {
-                var dateTime = new Date(
-                        $("#dateElement" + numberOfAppointments + " #year").val(),
-                        $("#dateElement" + numberOfAppointments + " #month").val(),
-                        $("#dateElement" + numberOfAppointments + " #day").val(),
-                        $("#dateElement" + numberOfAppointments + " #hour").val(),
-                        $("#dateElement" + numberOfAppointments + " #min").val()
-                        );
-                return (dateTime);
-            }
-
-            //apply the the Time from Textboxes to Current Item
-            function applyTime(numberOfAppointments, dateTime) {
-
-            }
-
-            //fills the Textboxes with current time for the first use or with the next logical
-            function setCurrentTime(numberOfAppointments, dateTime) {
-                $("#dateElement" + numberOfAppointments + " #day").val(dateTime.getDate());
-                $("#dateElement" + numberOfAppointments + " #month").val(dateTime.getMonth());
-                $("#dateElement" + numberOfAppointments + " #year").val(dateTime.getFullYear());
-                $("#dateElement" + numberOfAppointments + " #hour").val(dateTime.getHours());
-                $("#dateElement" + numberOfAppointments + " #min").val(dateTime.getMinutes());
-            }
-
-
-            //Show and Hide
-
-            //Hides in inputs and p of certain date Element
-            function hideInput(numberOfAppointments) {
-                $("#dateElement" + numberOfAppointments + " #day").hide();
-                $("#dateElement" + numberOfAppointments + " #month").hide();
-                $("#dateElement" + numberOfAppointments + " #year").hide();
-                $("#dateElement" + numberOfAppointments + " #hour").hide();
-                $("#dateElement" + numberOfAppointments + " #min").hide();
-                $("#dateElement" + numberOfAppointments + " #labelDate").hide();
-                $("#dateElement" + numberOfAppointments + " #labelTime").hide();
-
-                appointmentList[numberOfAppointments]["RolledOut"] = false;
-            }
-            //Shows in inputs and p of certain date Element
-            function showInput(numberOfAppointments) {
-                $("#dateElement" + numberOfAppointments + " #day").show();
-                $("#dateElement" + numberOfAppointments + " #month").show();
-                $("#dateElement" + numberOfAppointments + " #year").show();
-                $("#dateElement" + numberOfAppointments + " #hour").show();
-                $("#dateElement" + numberOfAppointments + " #min").show();
-                $("#dateElement" + numberOfAppointments + " #labelDate").show();
-                $("#dateElement" + numberOfAppointments + " #labelTime").show();
-
-                appointmentList[numberOfAppointments]["RolledOut"] = true;
-            }
-
-
 
 
             /*adds a new Date Element to the Container div*/
             function newDateElement() {
-
-                //$(".ui-content").append("<div class='divRollOut' id='unrolled'><a data-role='button' onclick='dateElementClicked(this)'>Neuen Termin Hinzufügen</a></div>");
-                // $(".ui-content").trigger('create');
-
-                var newDateElement = $(document.createElement('div')).attr("class", 'divRollOut');
-                newDateElement.after().html("<a data-role='button' onclick='dateElementClicked(this)' class='ui-link ui-btn ui-shadow ui-corner-all' role='button'>Neuen Termin Hinzufügen</a>");
-                newDateElement.appendTo(".ui-content");
-                alert("newDateElement");
-
+                //document.getElementsByClassName("ui-content").innerHTML = "<p>Hello</p>";
+                var unrolledDiv = document.createElement("div");
+                unrolledDiv.id = "container" + numberOfAppointments;
+                unrolledDiv.innerHTML = "<a data-role='button' onclick='dateElementClicked(this)' class='ui-link ui-btn ui-shadow ui-corner-all' role='button' id='anchor" + numberOfAppointments + "'>Neuen Termin Hinzufügen</a>";
+                //var text = document.createTextNode("new paragraph number: " );
+                //newP.appendChild(text);
+                document.getElementsByClassName("ui-content")[0].appendChild(unrolledDiv);
+                //document.getElementById("container").appendChild(newP);
             }
+
         </script>
 
     </body>

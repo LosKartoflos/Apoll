@@ -298,7 +298,7 @@ div.divFilled{
     border:1px solid #00897B;
     display:inline-block;
     color:#ffffff;
-    font-family: "customfont2";
+    //font-family: "customfont2";
     font-weight: normal;
     font-size:17px;
     margin: 3px 3px 17px 3px;
@@ -308,14 +308,14 @@ div.divFilled{
 }
 
 div.divRollOut{
-    animation-name: divRollsOut;
-    animation-duration: 4s;
+    //animation-name: divRollsOut;
+    //animation-duration: 4s;
     background-color:#00897B;
     border-radius:8px;
     border:1px solid #00897B;
     display:inline-block;
     color:#ffffff;
-    font-family: "customfont2";
+    //font-family: "customfont2";
     font-weight: normal;
     font-size:17px;
     margin: 3px 3px 17px 3px;
@@ -348,10 +348,10 @@ div.ui-footer{
     text-shadow: none !important;
 }
 
-@keyframes divRollsOut {
+/*@keyframes divRollsOut {
     from {height: 20px;}
     to {height: 300px;}
-}
+}*/
 
 
 
@@ -504,6 +504,7 @@ textarea.textareaLine{
 /*.myFontClass{
     font-family: aFont;
 }*/
+
 //prevents jquery mobile from show loading span
 //.ui-loading .ui-loader { display: block; }
 //.ui-loader { display: none; position: absolute; opacity: .85; z-index: 100; left: 50%; width: 200px; margin-left: -130px; margin-top: -35px; padding: 10px 30px; }
