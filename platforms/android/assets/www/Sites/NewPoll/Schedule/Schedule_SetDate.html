@@ -22,19 +22,22 @@ and open the template in the editor.
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="../../../js/index.js"></script>
         <script type="text/javascript" src="../../../js/jquery.min.js"></script>
+         <script src="../../../js/function.js" type="text/javascript"></script>
         <script type="text/javascript" src="../../../js/jquery.mobile-1.4.5.min.js"></script>
-
+       
 
         <div data-role="page">
             <div data-role="header">               
                 <h1>Zeiten</h1>
+
             </div>
+
 
             <div data-role="main" class="ui-content" id="container" >
                 <div id="container0">
-                    <a data-role="button"   id="anchor0">Neuen Termin Hinzufügen</a>
+                    <a data-role="button"  id="anchor0" >Neuen Termin Hinzufügen</a>
+                    <button onclick="dateElementClicked(this)">button</button>
                 </div>
-
             </div>
 
             <div data-role="footer"  data-position="fixed" >
@@ -44,86 +47,10 @@ and open the template in the editor.
         </div > 
 
         <script>
-            $(function () {
-                $("a").bind("tap", newDateElement());
-
-               
+            alert("ext");
+            $(window).load(function () {
+                alert("in funct");
             });
-
-
-            var numberOfAppointments = 0;
-            /*var apointment = {
-             id: 0,
-             date: 0,
-             rolled: false
-             };*/
-            var appointmentList = new Array();
-
-            //$(document).ready(newDateElement());   
-            /*Controls what happens if a dateElement is clicked:
-             * 
-             * if its the first time it will change to a normal dateElement
-             * else it will be pop out an will be editable or shrink
-             */
-            function dateElementClicked(clickedAnchor) {
-
-                //anchor is clicked the first time(the id number equals numberOfAppointments)
-                if (clickedAnchor.id.slice(-1) == numberOfAppointments) {
-                    dateElementClickedFirstTime(clickedAnchor);
-                }
-
-            }
-
-            // if a is clicked the first Time
-            function dateElementClickedFirstTime(clickedAnchor) {
-                //adding the html stuff
-
-                //the container div which should get html stuff
-                var divContainer = clickedAnchor.parentElement;
-
-                /*div.attr("id", "dateElement" + numberOfAppointments);
-                 div.appendTo("<p id='labelDate'>Datum: <input id='day' value=''/><input id='month' value='MM'/><input class='big' id='year' value='YYYY'/></p>");
-                 div.appendTo("<p id='labelTime'>Uhrzeit: <input id='hour' value='hour'/><input id='min' value='min'/></p>");
-                 div.css("background-color", "#009688");*/
-                divContainer.style = "background-color:#009688 ";
-
-
-                //adding to apoinment list
-                appointmentList[numberOfAppointments] = new Object();
-                appointmentList[numberOfAppointments]["Id"] = numberOfAppointments;
-                appointmentList[numberOfAppointments]["Date"] = new Date();
-                appointmentList[numberOfAppointments]["RolledOut"] = true;
-
-                //decide which Time and Date will be preconfigured
-                var dateTime = appointmentList[numberOfAppointments]["Date"];
-                /*
-                 if (numberOfAppointments == 0) {
-                 setCurrentTime(numberOfAppointments, dateTime);
-                 }
-                 
-                 else if (numberOfAppointments == 0) {
-                 dateTime.setHours(dateTime.getHours() + numberOfAppointments);
-                 setCurrentTime(numberOfAppointments, dateTime);
-                 }
-                 */
-                newDateElement();
-
-                //countig up the ID counter (must come at last)
-                numberOfAppointments += 1;
-            }
-
-
-            /*adds a new Date Element to the Container div*/
-            function newDateElement() {
-                //document.getElementsByClassName("ui-content").innerHTML = "<p>Hello</p>";
-                var unrolledDiv = document.createElement("div");
-                unrolledDiv.id = "container" + numberOfAppointments;
-                unrolledDiv.innerHTML = "<a data-role='button' onclick='dateElementClicked(this)' class='ui-link ui-btn ui-shadow ui-corner-all' role='button' id='anchor" + numberOfAppointments + "'>Neuen Termin Hinzufügen</a>";
-                //var text = document.createTextNode("new paragraph number: " );
-                //newP.appendChild(text);
-                document.getElementsByClassName("ui-content")[0].appendChild(unrolledDiv);
-                //document.getElementById("container").appendChild(newP);
-            }
 
         </script>
 
